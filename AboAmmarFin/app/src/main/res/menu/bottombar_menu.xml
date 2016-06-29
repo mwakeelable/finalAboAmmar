@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/black"
+    app:bbn_badgeColor="@color/colorPrimaryDark"
+    app:bbn_rippleColor="#33ffffff">
+    <item
+        android:id="@+id/item1"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/home"
+        android:title="Home" />
+    <item
+        android:id="@+id/item2"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/iphone"
+        android:title="Mobile" />
+    <item
+        android:id="@+id/item3"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/laptop"
+        android:title="Laptops" />
+    <item
+        android:id="@+id/item4"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/airplay"
+        android:title="Electronics" />
+    <item
+        android:id="@+id/item5"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/headphones"
+        android:title="Accessories" />
+
+</menu>

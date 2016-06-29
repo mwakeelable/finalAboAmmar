@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".UI.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingBottom="60dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:menu_backgroundColor="#ccffffff"
+        app:menu_fab_hide_animation="@anim/fab_slide_out_to_right"
+        app:menu_fab_show_animation="@anim/fab_slide_in_from_right"
+        app:menu_labels_ellipsize="end"
+        app:menu_labels_singleLine="true"
+        app:menu_icon="@android:drawable/ic_menu_call"
+        app:menu_colorNormal="@color/colorAccent"
+        app:menu_colorPressed="@color/colorAccent"
+        app:menu_colorRipple="@color/colorAccent"
+        app:menu_shadowColor="@color/colorPrimaryDark"
+        app:menu_labels_colorNormal="@color/grey_100"
+        app:menu_labels_textColor="#000000">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_call"
+            app:fab_label="Call"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorPressed="@color/colorPrimary"
+            app:fab_colorRipple="@color/colorPrimary"
+            app:fab_showShadow="true"
+            app:fab_shadowColor="@color/colorPrimaryDark"
+            app:fab_shadowRadius="4dp"
+            app:fab_shadowXOffset="1dp"
+            app:fab_shadowYOffset="3dp"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/email"
+            app:fab_label="Email Us"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorPressed="@color/colorPrimary"
+            app:fab_colorRipple="@color/colorPrimary"
+            app:fab_showShadow="true"
+            app:fab_shadowColor="@color/colorPrimaryDark"
+            app:fab_shadowRadius="4dp"
+            app:fab_shadowXOffset="1dp"
+            app:fab_shadowYOffset="3dp"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/facebook"
+            app:fab_label="Facebook"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorPressed="@color/colorPrimary"
+            app:fab_colorRipple="@color/colorPrimary"
+            app:fab_showShadow="true"
+            app:fab_shadowColor="@color/colorPrimaryDark"
+            app:fab_shadowRadius="4dp"
+            app:fab_shadowXOffset="1dp"
+            app:fab_shadowYOffset="3dp"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+    <it.sephiroth.android.library.bottomnavigation.BottomNavigation
+        android:id="@+id/BottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:bbn_badgeProvider="@string/bbn_badgeProvider"
+        app:bbn_entries="@menu/bottombar_menu"
+        app:bbn_scrollEnabled="true"
+        app:layout_behavior="@string/bbn_phone_view_behavior" />
+
+</android.support.design.widget.CoordinatorLayout>
