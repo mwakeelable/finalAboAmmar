@@ -1,8 +1,6 @@
 package com.trianglz.aboammarfin.Fragment;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,18 +14,45 @@ import android.widget.TextView;
 
 import com.trianglz.aboammarfin.R;
 import com.trianglz.aboammarfin.UI.MainActivity;
-import com.trianglz.aboammarfin.model.Data_Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     MainActivity activity;
     private static RecyclerView recyclerView;
-    public static final String[] TITLES = {"Hood", "Full Sleeve Shirt", "Shirt", "Jean Jacket", "Jacket"};
-    public static final Integer[] IMAGES = {R.drawable.one, R.drawable.two, R.drawable.three, R.drawable.four, R.drawable.five,};
 
     public HomeFragment() {
 
+    }
+
+    public class Data_Model {
+        private String title;
+        private int image;
+
+        public Data_Model(String title, int image) {
+            this.title = title;
+            this.image = image;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public int getImage() {
+            return image;
+        }
+    }
+
+    private List<Data_Model> getAllItemList() {
+        List<Data_Model> allItems = new ArrayList<Data_Model>();
+        allItems.add(new Data_Model(activity.getString(R.string.category1), R.drawable.album1));
+        allItems.add(new Data_Model(activity.getString(R.string.category2), R.drawable.album2));
+        allItems.add(new Data_Model(activity.getString(R.string.category3), R.drawable.album3));
+        allItems.add(new Data_Model(activity.getString(R.string.category4), R.drawable.album4));
+        allItems.add(new Data_Model(activity.getString(R.string.category5), R.drawable.album5));
+        allItems.add(new Data_Model(activity.getString(R.string.category6), R.drawable.orange));
+        return allItems;
     }
 
     @Nullable
@@ -39,62 +64,55 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        List<Data_Model> rowListItem = getAllItemList();
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-        ArrayList<Data_Model> arrayList = new ArrayList<>();
-        for (int i = 0; i < TITLES.length; i++) {
-            arrayList.add(new Data_Model(TITLES[i],IMAGES[i]));
-        }
-        RecyclerView_Adapter  adapter = new RecyclerView_Adapter(activity, arrayList);
+        LinearLayoutManager llm = new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false);
+        llm.setSmoothScrollbarEnabled(true);
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setHasFixedSize(true);
+        HomeAdapter adapter = new HomeAdapter(activity, rowListItem);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
-    public class RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerViewHolder> {
-        private ArrayList<Data_Model> arrayList;
+    class HomeAdapter extends RecyclerView.Adapter<ViewHolder> {
+        private List<Data_Model> itemList;
         private Context context;
 
-        public RecyclerView_Adapter(Context context, ArrayList<Data_Model> arrayList) {
+        public HomeAdapter(Context context, List<Data_Model> itemList) {
+            this.itemList = itemList;
             this.context = context;
-            this.arrayList = arrayList;
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row, null);
+            ViewHolder rcv = new ViewHolder(layoutView);
+            return rcv;
+        }
+
+        @Override
+        public void onBindViewHolder(final ViewHolder holder, int position) {
+            holder.mNameTextView.setTextSize(16);
+            holder.mNameTextView.setText(itemList.get(position).getTitle());
+            holder.mImageView.setImageResource(itemList.get(position).getImage());
         }
 
         @Override
         public int getItemCount() {
-            return (null != arrayList ? arrayList.size() : 0);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-            final Data_Model model = arrayList.get(position);
-            RecyclerViewHolder mainHolder = (RecyclerViewHolder) holder;
-            Bitmap image = BitmapFactory.decodeResource(context.getResources(),
-                    model.getImage());
-            mainHolder.title.setText(model.getTitle());
-            mainHolder.imageview.setImageBitmap(image);
-        }
-
-        @Override
-        public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-            LayoutInflater mInflater = LayoutInflater.from(viewGroup.getContext());
-            ViewGroup mainGroup = (ViewGroup) mInflater.inflate(
-                    R.layout.item_row, viewGroup, false);
-            RecyclerViewHolder listHolder = new RecyclerViewHolder(mainGroup);
-            return listHolder;
+            return this.itemList.size();
         }
     }
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public ImageView imageview;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        private ImageView mImageView;
+        private TextView mNameTextView;
 
-        public RecyclerViewHolder(View view) {
-            super(view);
-            this.title = (TextView) view
-                    .findViewById(R.id.title);
-            this.imageview = (ImageView) view
-                    .findViewById(R.id.image);
+        private ViewHolder(View itemView) {
+            super(itemView);
+            mImageView = (ImageView) itemView.findViewById(R.id.image);
+            mNameTextView = (TextView) itemView.findViewById(R.id.title);
         }
     }
 }
