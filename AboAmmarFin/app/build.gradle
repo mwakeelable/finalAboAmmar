@@ -18,6 +18,9 @@ android {
         }
     }
 }
+repositories {
+    jcenter()
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -27,4 +30,6 @@ dependencies {
     compile 'it.sephiroth.android.library.bottomnavigation:bottom-navigation:1.0.7'
     compile 'com.github.clans:fab:1.6.4'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
+    compile 'com.android.support:cardview-v7:23.0.1'
+    compile 'com.android.support:recyclerview-v7:23.0.1'
 }

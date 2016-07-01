@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#000000">
+    android:background="@color/colorPrimaryDark">
 
 
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/splashgif" />
+        android:src="@drawable/splash" />
 
 </LinearLayout>
